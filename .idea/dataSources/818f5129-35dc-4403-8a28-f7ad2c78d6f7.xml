@@ -15,105 +15,144 @@
     <schema id="9" parent="1" name="sys"/>
     <table id="10" parent="2" name="ar_internal_metadata"/>
     <table id="11" parent="2" name="polls"/>
-    <table id="12" parent="2" name="questions"/>
-    <table id="13" parent="2" name="schema_migrations"/>
-    <column id="14" parent="10" name="key">
+    <table id="12" parent="2" name="possible_answers"/>
+    <table id="13" parent="2" name="questions"/>
+    <table id="14" parent="2" name="schema_migrations"/>
+    <column id="15" parent="10" name="key">
       <Position>1</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="15" parent="10" name="value">
+    <column id="16" parent="10" name="value">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="16" parent="10" name="created_at">
+    <column id="17" parent="10" name="created_at">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="10" name="updated_at">
+    <column id="18" parent="10" name="updated_at">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="18" parent="10" name="PRIMARY">
+    <key id="19" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>key</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="19" parent="11" name="id">
+    <column id="20" parent="11" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="20" parent="11" name="title">
+    <column id="21" parent="11" name="title">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="21" parent="11" name="created_at">
+    <column id="22" parent="11" name="created_at">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="11" name="updated_at">
+    <column id="23" parent="11" name="updated_at">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="23" parent="11" name="PRIMARY">
+    <key id="24" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="24" parent="12" name="id">
+    <column id="25" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="25" parent="12" name="title">
+    <column id="26" parent="12" name="question_id">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
     </column>
-    <column id="26" parent="12" name="kind">
+    <column id="27" parent="12" name="title">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="27" parent="12" name="poll_id">
-      <Position>4</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
     <column id="28" parent="12" name="created_at">
-      <Position>5</Position>
+      <Position>4</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="29" parent="12" name="updated_at">
-      <Position>6</Position>
+      <Position>5</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="30" parent="12" name="index_questions_on_poll_id">
-      <ColNames>poll_id</ColNames>
+    <index id="30" parent="12" name="index_possible_answers_on_question_id">
+      <ColNames>question_id</ColNames>
     </index>
     <key id="31" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="32" parent="12" name="fk_rails_6c530c0079">
+    <foreign-key id="32" parent="12" name="fk_rails_f255fee41e">
+      <ColNames>question_id</ColNames>
+      <RefSchemaName>survey_development</RefSchemaName>
+      <RefTableName>questions</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="33" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="34" parent="13" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="35" parent="13" name="kind">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="36" parent="13" name="poll_id">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="37" parent="13" name="created_at">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="13" name="updated_at">
+      <Position>6</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="39" parent="13" name="index_questions_on_poll_id">
+      <ColNames>poll_id</ColNames>
+    </index>
+    <key id="40" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="41" parent="13" name="fk_rails_6c530c0079">
       <ColNames>poll_id</ColNames>
       <RefSchemaName>survey_development</RefSchemaName>
       <RefTableName>polls</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="33" parent="13" name="version">
+    <column id="42" parent="14" name="version">
       <Position>1</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="34" parent="13" name="PRIMARY">
+    <key id="43" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
       <Primary>1</Primary>

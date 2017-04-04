@@ -17,5 +17,8 @@
         %label
           = f.radio_button :kind, option[1]
           = option[0]
+
+    = f.fields_for :possible_answers do |c|
+      = c.text_field :title
   %p
     = f.submit 'Save', class: "btn btn-primary"

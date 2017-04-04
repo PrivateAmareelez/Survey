@@ -1,16 +1,15 @@
-%p#notice= notice
+%h1 = @poll.title
 
-%p
-  %h2
-    %b
-      = @poll.title
-
-= link_to 'Edit', edit_poll_path(@poll), class: "btn btn-default"
-= link_to 'Back', polls_path, class: "btn btn-default"
-= link_to 'Add question', new_poll_question_path(@poll), class: "btn btn-default"
+%p.btn-group
+  = link_to 'Edit', edit_poll_path(@poll), class: "btn btn-default"
+  = link_to 'Back', polls_path, class: "btn btn-default"
+  = link_to 'Add question', new_poll_question_path(@poll), class: "btn btn-default"
 
 %h2 Questions
 
 %ul
   -@poll.questions.each do |question|
     %li=question.title
+    %ul
+      -question.possible_answers.each do |possible_answer|
+        %li=possible_answer.title
