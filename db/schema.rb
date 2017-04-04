@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404185836) do
+ActiveRecord::Schema.define(version: 20170404220113) do
 
   create_table "polls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -18,4 +18,23 @@ ActiveRecord::Schema.define(version: 20170404185836) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "possible_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "question_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_possible_answers_on_question_id", using: :btree
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.string "kind"
+    t.integer "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_questions_on_poll_id", using: :btree
+  end
+
+  add_foreign_key "possible_answers", "questions"
+  add_foreign_key "questions", "polls"
 end

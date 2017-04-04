@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Rails Survey: test">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="Survey_test">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="CourseProject_development"/>
+    <schema id="4" parent="1" name="CourseProject_test"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="Survey_development"/>
+    <schema id="9" parent="1" name="sys"/>
+    <table id="10" parent="2" name="ar_internal_metadata"/>
+    <table id="11" parent="2" name="schema_migrations"/>
+    <column id="12" parent="10" name="key">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="13" parent="10" name="value">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="14" parent="10" name="created_at">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="10" name="updated_at">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="16" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>key</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="17" parent="11" name="version">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="18" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>version</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
