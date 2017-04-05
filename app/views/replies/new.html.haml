@@ -1,0 +1,8 @@
+%h1
+  = @poll.title
+
+= form_for [ @poll, @reply] do |f|
+  = f.fields_for :answers do |c|
+    %p
+      %label
+        = c.object.question.title
