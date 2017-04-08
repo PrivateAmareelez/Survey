@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  belongs_to :poll
+  belongs_to :poll, optional: true
 
   has_many :possible_answers
   has_many :answers

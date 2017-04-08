@@ -1,5 +1,5 @@
 class Reply < ApplicationRecord
-  belongs_to :poll
+  belongs_to :poll, optional: true
 
   has_many :answers
 

@@ -1,0 +1,18 @@
+            Prefix Verb   URI Pattern                                  Controller#Action
+    poll_questions GET    /polls/:poll_id/questions(.:format)          questions#index
+                   POST   /polls/:poll_id/questions(.:format)          questions#create
+ new_poll_question GET    /polls/:poll_id/questions/new(.:format)      questions#new
+edit_poll_question GET    /polls/:poll_id/questions/:id/edit(.:format) questions#edit
+     poll_question GET    /polls/:poll_id/questions/:id(.:format)      questions#show
+                   PATCH  /polls/:poll_id/questions/:id(.:format)      questions#update
+                   PUT    /polls/:poll_id/questions/:id(.:format)      questions#update
+                   DELETE /polls/:poll_id/questions/:id(.:format)      questions#destroy
+             polls GET    /polls(.:format)                             polls#index
+                   POST   /polls(.:format)                             polls#create
+          new_poll GET    /polls/new(.:format)                         polls#new
+         edit_poll GET    /polls/:id/edit(.:format)                    polls#edit
+              poll GET    /polls/:id(.:format)                         polls#show
+                   PATCH  /polls/:id(.:format)                         polls#update
+                   PUT    /polls/:id(.:format)                         polls#update
+                   DELETE /polls/:id(.:format)                         polls#destroy
+              root GET    /                                            polls#index

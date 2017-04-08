@@ -9,7 +9,8 @@ class RepliesController < ApplicationController
   def create
     @poll = Poll.find(params[:poll_id])
     @reply = @poll.replies.build(reply_params)
-    if @reply.save
+    var = @reply.errors.full_messages
+    if @reply.save!
       redirect_to @poll, notice: "Thank you for taking the poll."
     else
       render :new
@@ -18,6 +19,6 @@ class RepliesController < ApplicationController
 
   private
   def reply_params
-    params.require(:reply).permit(:poll_id, answers_attributes: [:value, :question_id, :reply_id, :possible_answer_id])
+    params.require(:reply).permit(answers_attributes: [:value, :question_id, :possible_answer_id])
   end
 end
