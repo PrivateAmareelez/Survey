@@ -23,6 +23,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'haml-rails'
 gem 'pry-rails'
 gem 'bootstrap-sass'
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -6,11 +6,40 @@
   = link_to 'Back', polls_path, class: "btn btn-default"
   = link_to 'Add question', new_poll_question_path(@poll), class: "btn btn-default"
 
-%h2 Questions
+%div
+  / Nav tabs
+  %ul.nav.nav-tabs{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      = link_to "Questions", "#tab-questions", data: {toggle: "tab"}
+    %li{:role => "presentation"}
+      = link_to "Replies", "#tab-replies", data: {toggle: "tab"}
+    %li{:role => "presentation"}
+      = link_to "Stats", "#tab-stats", data: {toggle: "tab"}
+  / Tab panes
+  .tab-content
+    #tab-questions.tab-pane.active{:role => "tabpanel"}
+      %h2 Questions
 
-%ul
-  -@poll.questions.each do |question|
-    %li=question.title
-    %ul
-      -question.possible_answers.each do |possible_answer|
-        %li=possible_answer.title
+      %ul
+        -@poll.questions.each do |question|
+          %li=question.title
+          %ul
+            -question.possible_answers.each do |possible_answer|
+              %li=possible_answer.title
+    #tab-replies.tab-pane{:role => "tabpanel"}
+      %h2 Replies
+
+      -@poll.replies.each do |reply|
+        .col-md-6
+          .panel.panel-default
+            .panel-heading.text-right
+              = time_ago_in_words reply.created_at
+            .panel-body
+              %dl
+                -reply.answers.each do |answer|
+                  %dt
+                    = answer.question.title
+                  %dd
+                    = answer.value.present? ? answer.value : answer.possible_answer.title
+    #tab-stats.tab-pane{:role => "tabpanel"}
+      = render 'stats'

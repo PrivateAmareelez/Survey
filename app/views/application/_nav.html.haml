@@ -13,3 +13,16 @@
       %ul.nav.navbar-nav
         %li.active
           = link_to 'Polls', polls_path
+      %ul.nav.navbar-nav.navbar-right
+        -if current_user
+          %li
+            %span.navbar-text Signed in as #{current_user.email}
+            %li
+              =link_to destroy_session_path('user'), method: :delete do
+                %span.glyphicon.glyphicon-log-out
+                Sign out
+        -else
+          %li
+            =link_to new_session_path('user') do
+              %span.glyphicon.glyphicon-log-in
+              Sign in

@@ -10,11 +10,19 @@ class RepliesController < ApplicationController
     @poll = Poll.find(params[:poll_id])
     @reply = @poll.replies.build(reply_params)
     var = @reply.errors.full_messages
-    if @reply.save!
-      redirect_to @poll, notice: "Thank you for taking the poll."
-    else
-      render :new
+    respond_to do |format|
+      if @reply.save
+        format.html do
+          flash[:success] = 'Thank you for taking the poll.'
+          render 'replies/finish'
+        end
+      else
+        format.html { render :new }
+      end
     end
+  end
+
+  def finish
   end
 
   private

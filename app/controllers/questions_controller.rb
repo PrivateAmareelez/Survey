@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :set_poll
   before_action :set_kind_questions
+  before_action :admin!
 
   # GET /questions
   # GET /questions.json
@@ -45,7 +46,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to poll_question_path(@question), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -85,5 +86,11 @@ class QuestionsController < ApplicationController
 
   def set_poll
     @poll = Poll.find params[:poll_id]
+  end
+
+  def admin!
+    authenticate_user!
+
+    redirect_to root_path, alert: "You are not authorized to this operation." unless current_user.admin?
   end
 end

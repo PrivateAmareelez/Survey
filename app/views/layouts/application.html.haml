@@ -5,8 +5,12 @@
     %title Survey
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'https://www.gstatic.com/charts/loader.js'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'nav'
     .container
+      = content_tag :div, flash[:notice], class: "flash bg-success" if flash[:notice]
+      = content_tag :div, flash[:error], class: "flash bg-danger" if flash[:error]
       = yield
+    = yield :footer
