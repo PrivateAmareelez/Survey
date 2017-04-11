@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410231641) do
+ActiveRecord::Schema.define(version: 20170411095234) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "reply_id"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20170410231641) do
     t.index ["possible_answer_id"], name: "index_answers_on_possible_answer_id", using: :btree
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["reply_id"], name: "index_answers_on_reply_id", using: :btree
+  end
+
+  create_table "ips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "reply_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "value"
+    t.integer "poll_id"
+    t.index ["poll_id"], name: "index_ips_on_poll_id", using: :btree
+    t.index ["reply_id"], name: "index_ips_on_reply_id", using: :btree
   end
 
   create_table "polls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -83,8 +93,10 @@ ActiveRecord::Schema.define(version: 20170410231641) do
   add_foreign_key "answers", "possible_answers", on_delete: :cascade
   add_foreign_key "answers", "questions", on_delete: :cascade
   add_foreign_key "answers", "replies", on_delete: :cascade
+  add_foreign_key "ips", "polls", on_delete: :cascade
+  add_foreign_key "ips", "replies", on_delete: :cascade
   add_foreign_key "possible_answers", "questions", on_delete: :cascade
   add_foreign_key "questions", "polls", on_delete: :cascade
   add_foreign_key "replies", "polls", on_delete: :cascade
-  add_foreign_key "secret_codes", "polls", on_delete: :cascade
+  add_foreign_key "secret_codes", "polls", on_update: :cascade, on_delete: :cascade
 end

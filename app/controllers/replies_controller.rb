@@ -8,6 +8,8 @@ class RepliesController < ApplicationController
 
   def create
     @reply = @poll.replies.build(reply_params)
+    @ip = @reply.build_ip value: request.remote_ip, poll_id: @poll.id
+
     respond_to do |format|
       if @reply.save
         format.html do

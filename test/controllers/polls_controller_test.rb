@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class PollsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    sign_in User.last
     @poll = polls(:one)
   end
 
