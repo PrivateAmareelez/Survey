@@ -7,8 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 @poll = Poll.create [{ title: 'TestPoll' }]
+@secret_code = SecretCode.create [{ value: 'testpoll', poll_id: Poll.last.id }]
 @question_1 = Question.create [{ title: "What's your name ?", kind: 'open', poll_id: Poll.last.id }]
 @question_2 = Question.create [{ title: "What do you like the most ?", kind: 'choice', poll_id: Poll.last.id }]
 @possible_answer_2_1 = PossibleAnswer.create [{ title: "Apple", question_id: Question.last.id }]
 @possible_answer_2_2 = PossibleAnswer.create [{ title: "Orange", question_id: Question.last.id }]
+
+@admin = User.create [{ email: 'test@test.com', password: 'qwerty', admin: true }]
 

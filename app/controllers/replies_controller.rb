@@ -1,15 +1,13 @@
 class RepliesController < ApplicationController
-  def new
-    @poll = Poll.find(params[:poll_id])
-    @reply = @poll.replies.build
+  before_action :set_poll, only: [:new, :create]
 
+  def new
+    @reply = @poll.replies.build
     @poll.questions.each { |question| @reply.answers.build question: question }
   end
 
   def create
-    @poll = Poll.find(params[:poll_id])
     @reply = @poll.replies.build(reply_params)
-    var = @reply.errors.full_messages
     respond_to do |format|
       if @reply.save
         format.html do
@@ -18,6 +16,7 @@ class RepliesController < ApplicationController
         end
       else
         format.html { render :new }
+        format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -28,5 +27,9 @@ class RepliesController < ApplicationController
   private
   def reply_params
     params.require(:reply).permit(answers_attributes: [:value, :question_id, :possible_answer_id])
+  end
+
+  def set_poll
+    @poll = Poll.find(params[:poll_id])
   end
 end

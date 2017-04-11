@@ -1,4 +1,4 @@
-#polls_per_month
+-#polls_per_month
   :javascript
         var selector = '#polls_per_month';
         var data = #{@poll.serialize_for_graph}
@@ -29,30 +29,6 @@
     -if question.kind == "choice"
       .col-md-6{id: "answer_per_question_#{question.id}"}
       :javascript
-                    var selector = "#answer_per_question_#{question.id}"
-                    var data = #{question.serialize_for_graph}
-                    Graph.instances.push(new Graph(selector, data, "pie"))
-
-                    var selector = "#answer_per_question_#{question.id}";
-                    var data = #{question.serialize_for_graph}
-                    Graph.instances.push(new Graph(selector, data, "pie"))
-
-              var selector = "#answer_per_question_#{question.id}"
-              var data = #{question.serialize_for_graph}
-              Graph.instances.push(new Graph(selector, data, "pie"))
-
-                    var selector = "#answer_per_question_#{question.id}"
-                    var data = #{question.serialize_for_graph}
-                    Graph.instances.push(new Graph(selector, data, "pie"))
-
-                    var selector = "#answer_per_question_#{question.id}";
-                    var data = #{question.serialize_for_graph}
-                    Graph.instances.push(new Graph(selector, data, "pie"))
-
-              var selector = "#answer_per_question_#{question.id}";
-              var data = #{question.serialize_for_graph}
-              Graph.instances.push(new Graph(selector, data, "pie"))
-
               var selector = "#answer_per_question_#{question.id}"
               var data = #{question.serialize_for_graph}
               Graph.instances.push(new Graph(selector, data, "pie"))

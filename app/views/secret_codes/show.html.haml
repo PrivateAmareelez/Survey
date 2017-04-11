@@ -2,9 +2,6 @@
   .panel-heading
     .h3 Authentication
   .panel-body
-    - if flash[:alert]
-      .alert.alert-danger
-        = flash[:alert]
     =form_tag(controller: 'secret_codes' , action: :check) do
       .field
         =label_tag :value, 'Enter your survey code here:'

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "application-27ea58c74af58660558cda4b44a5bf299ea7a242b0c95083095b93a8f361b918.js": {
+      "logical_path": "application.js",
+      "mtime": "2017-04-11T04:51:21+03:00",
+      "size": 441965,
+      "digest": "27ea58c74af58660558cda4b44a5bf299ea7a242b0c95083095b93a8f361b918",
+      "integrity": "sha256-J+pYx0r1hmBVjNpLRKW/KZ6nokKwyVCDCVuTqPNhuRg="
+    },
+    "application-1f90a21b60b6f185b121ae1eb5bf779a8c791d1059eaa341385f3a51f0b5dea0.css": {
+      "logical_path": "application.css",
+      "mtime": "2017-04-11T04:51:21+03:00",
+      "size": 344013,
+      "digest": "1f90a21b60b6f185b121ae1eb5bf779a8c791d1059eaa341385f3a51f0b5dea0",
+      "integrity": "sha256-H5CiG2C28YWxIa4etb93mox5HRBZ6qNBOF86UfC13qA="
+    }
+  },
+  "assets": {
+    "application.js": "application-27ea58c74af58660558cda4b44a5bf299ea7a242b0c95083095b93a8f361b918.js",
+    "application.css": "application-1f90a21b60b6f185b121ae1eb5bf779a8c791d1059eaa341385f3a51f0b5dea0.css"
+  }
+}

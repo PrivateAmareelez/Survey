@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
-  before_action :admin!, except: [:index]
+  before_action :admin!
 
   # GET /polls
   # GET /polls.json
@@ -16,6 +16,7 @@ class PollsController < ApplicationController
   # GET /polls/new
   def new
     @poll = Poll.new
+    @poll.build_secret_code
   end
 
   # GET /polls/1/edit
@@ -41,6 +42,7 @@ class PollsController < ApplicationController
   # PATCH/PUT /polls/1
   # PATCH/PUT /polls/1.json
   def update
+    @poll.secret_code.destroy
     respond_to do |format|
       if @poll.update(poll_params)
         format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
@@ -70,7 +72,7 @@ class PollsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def poll_params
-    params.require(:poll).permit(:title)
+    params.require(:poll).permit(:title, secret_code_attributes: [:value])
   end
 
   def admin!

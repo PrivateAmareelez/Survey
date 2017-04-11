@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", 'http-equiv' => "Content-Type"}/
     %title Survey
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -10,7 +10,7 @@
   %body
     = render 'nav'
     .container
-      = content_tag :div, flash[:notice], class: "flash bg-success" if flash[:notice]
-      = content_tag :div, flash[:error], class: "flash bg-danger" if flash[:error]
+      = content_tag :div, flash[:notice], class: "alert alert-success" if flash[:notice]
+      = content_tag :div, flash[:alert], class: "alert alert-danger" if flash[:alert]
       = yield
     = yield :footer

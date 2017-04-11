@@ -86,5 +86,5 @@ ActiveRecord::Schema.define(version: 20170410231641) do
   add_foreign_key "possible_answers", "questions", on_delete: :cascade
   add_foreign_key "questions", "polls", on_delete: :cascade
   add_foreign_key "replies", "polls", on_delete: :cascade
-  add_foreign_key "secret_codes", "polls", on_delete: :nullify
+  add_foreign_key "secret_codes", "polls", on_delete: :cascade
 end

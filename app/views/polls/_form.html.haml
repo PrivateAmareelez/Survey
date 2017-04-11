@@ -9,8 +9,9 @@
   .field
     = f.label :title
     = f.text_field :title, class: "form-control"
-    = f.label :secret_code
-    = f.text_field :secret_code, class: "form-control"
+    = f.fields_for :secret_code do |c|
+      = c.label :secret_code
+      = c.text_field :value, class: "form-control"
   %p
   .actions
     = f.submit 'Save', class: "btn btn-primary"

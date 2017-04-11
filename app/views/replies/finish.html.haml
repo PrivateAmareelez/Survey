@@ -1,8 +1,8 @@
 .panel.panel-default
   .panel-body
-    -if flash[:alert]
+    -if flash[:error]
       .alert.alert-danger
-        = flash[:alert]
+        = flash[:error]
     -if flash[:success]
-      .alert.alert-info
+      .alert.alert-success
         = flash[:success]

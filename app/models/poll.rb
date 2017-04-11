@@ -5,7 +5,5 @@ class Poll < ApplicationRecord
   has_many :replies
   has_one :secret_code
 
-  def serialize_for_graph
-    PollSerializer.count_per_month(self).to_json
-  end
+  accepts_nested_attributes_for :secret_code
 end
