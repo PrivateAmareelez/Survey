@@ -80,7 +80,7 @@ class QuestionsController < ApplicationController
   def set_kind_questions
     @kind_options = [
         ["Open Answer", "open"],
-        ["Multiple Choice", "choice"]
+        ["One Choice", "choice"]
     ]
   end
 
