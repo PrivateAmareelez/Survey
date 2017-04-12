@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_poll, only: [:show, :edit, :update, :destroy, :stop, :run]
   before_action :admin!
 
   # GET /polls
@@ -64,6 +64,28 @@ class PollsController < ApplicationController
     end
   end
 
+  def run
+    @poll.active = true
+    @poll.save
+    DeactivatePollJob.set(wait: params[:minutes].to_f.minutes).perform_later(@poll)
+
+    respond_to do |format|
+      format.html { redirect_to @poll, notice: "Timer for #{params[:minutes]} minutes has been launched." }
+      format.json { render :show, status: :ok, location: @poll }
+    end
+  end
+
+  def stop
+    @poll.active = false
+    @poll.save
+
+    respond_to do |format|
+      flash[:info] = 'Timer has stopped.'
+      format.html { redirect_to @poll }
+      format.json { render :show, status: :ok, location: @poll }
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_poll
@@ -72,7 +94,7 @@ class PollsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def poll_params
-    params.require(:poll).permit(:title, secret_code_attributes: [:value])
+    params.require(:poll).permit(:title, :active, :minutes, secret_code_attributes: [:value])
   end
 
   def admin!

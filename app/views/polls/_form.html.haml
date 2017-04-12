@@ -12,6 +12,9 @@
     = f.fields_for :secret_code do |c|
       = c.label :secret_code
       = c.text_field :value, class: "form-control"
+    %label
+      = 'Active'
+      = f.check_box :active
   %p
   .actions
     = f.submit 'Save', class: "btn btn-primary"

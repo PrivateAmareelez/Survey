@@ -6,6 +6,20 @@
   = link_to 'Back', polls_path, class: "btn btn-default"
   = link_to 'Add question', new_poll_question_path(@poll), class: "btn btn-default"
 
+.panel.panel-default
+  .panel-heading
+    .h4 Timer
+  .panel-body
+    =form_tag(controller: 'polls' , action: :run) do
+      .fields
+        %label
+          Minutes being active:
+        =number_field_tag :minutes, 5, min: 0
+        =hidden_field_tag :id, @poll.id
+      .actions
+        =button_tag 'Start' , class: 'btn btn-success' , type: :submit
+        =link_to 'Stop', stop_path_path(@poll), class: "btn btn-danger"
+
 %div
   / Nav tabs
   %ul.nav.nav-tabs{:role => "tablist"}

@@ -19,6 +19,9 @@
           = option[0]
 
     = f.fields_for :possible_answers do |c|
-      = c.text_field :title
+      .input-group
+        %span.input-group-addon
+          = c.index + 1
+        = c.text_field :title, class: "form-control"
   %p
     = f.submit 'Save', class: "btn btn-primary"
