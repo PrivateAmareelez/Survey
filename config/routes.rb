@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/polls/run', to: 'polls#run'
   get '/polls/stop', to: 'polls#stop'
   get '/polls/:id/stop', to: 'polls#stop', as: 'stop_path'
+  get '/polls/:id/time_left.json', to: 'polls#time_left'
 
   get '*path', to: 'secret_codes#show' unless Rails.env.development?
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

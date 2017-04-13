@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy, :stop, :run]
+  before_action :set_poll, only: [:show, :edit, :update, :destroy, :stop, :run, :time_left]
   before_action :admin!
 
   # GET /polls
@@ -67,7 +67,8 @@ class PollsController < ApplicationController
   def run
     @poll.active = true
     @poll.save
-    DeactivatePollJob.set(wait: params[:minutes].to_f.minutes).perform_later(@poll)
+    Delayed::Job.where(queue: "#{@poll.id}_queue").destroy_all
+    Delayed::Job.enqueue(DeactivatePollJob.new(@poll), run_at: params[:minutes].to_f.minutes.from_now)
 
     respond_to do |format|
       format.html { redirect_to @poll, notice: "Timer for #{params[:minutes]} minutes has been launched." }
@@ -78,11 +79,24 @@ class PollsController < ApplicationController
   def stop
     @poll.active = false
     @poll.save
+    Delayed::Job.where(queue: "#{@poll.id}_queue").destroy_all
 
     respond_to do |format|
-      flash[:info] = 'Timer has stopped.'
+      flash[:info] = 'Timer has been stopped.'
       format.html { redirect_to @poll }
       format.json { render :show, status: :ok, location: @poll }
+    end
+  end
+
+  # GET /time_left/1.json
+  def time_left
+    job = Delayed::Job.where(queue: "#{@poll.id}_queue")
+    if job.empty?
+      render json: [Time.at(job.run_at - Time.now).utc.strftime("%T"), (job.run_at - Time.now) / total_time * 100]
+    else
+      job = job.first
+      total_time = job.run_at - job.created_at
+      render json: [Time.at(job.run_at - Time.now).utc.strftime("%T"), (job.run_at - Time.now) / total_time * 100]
     end
   end
 

@@ -14,5 +14,6 @@ module Survey
 
     config.sass.preferred_syntax = :sass
     config.autoload_paths += %W(#{config.root}/app/lib)
+    config.active_job.queue_adapter = :delayed_job
   end
 end
