@@ -1,14 +1,10 @@
-class DeactivatePollJob < ApplicationJob
-  queue_as :default
-
-  def perform(poll)
+DeactivatePollJob = Struct.new(:poll) do
+  def perform
     poll.active = false
     poll.save
+  end
 
-    respond_to do |format|
-      flash[:info] = 'Timer has stopped.'
-      format.html { redirect_to poll }
-      format.json { render :show, status: :ok, location: poll }
-    end
+  def queue_name
+    "#{poll.id}_queue"
   end
 end

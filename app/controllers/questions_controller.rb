@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = @poll.questions.build
-    10.times { @question.possible_answers.build }
+    20.times { @question.possible_answers.build }
   end
 
   # GET /questions/1/edit
