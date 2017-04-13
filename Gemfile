@@ -25,7 +25,7 @@ gem 'pry-rails'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'delayed_job_active_record'
-
+gem 'newrelic_rpm'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
