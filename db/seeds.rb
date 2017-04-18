@@ -6,12 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-@poll = Poll.create [{ title: 'TestPoll' }]
+@poll = Poll.create [{ title: 'TestPoll', active: false }]
 @secret_code = SecretCode.create [{ value: 'testpoll', poll_id: Poll.last.id }]
-@question_1 = Question.create [{ title: "What's your name ?", kind: 'open', poll_id: Poll.last.id }]
-@question_2 = Question.create [{ title: "What do you like the most ?", kind: 'choice', poll_id: Poll.last.id }]
-@possible_answer_2_1 = PossibleAnswer.create [{ title: "Apple", question_id: Question.last.id }]
-@possible_answer_2_2 = PossibleAnswer.create [{ title: "Orange", question_id: Question.last.id }]
+20.times do
+  @question_2 = Question.create [{ title: "What do you like the most ?", kind: 'choice', poll_id: Poll.last.id }]
+  20.times { @possible_answer_2_1 = PossibleAnswer.create [{ title: "Apple", question_id: Question.last.id }] }
+end
 
+1000.times do
+  @reply = Reply.create [{ poll_id: Poll.last.id, answers_attributes: [{ possible_answer_id: 1, question_id: Question.last.id }] }]
+  @ip = Ip.create [{ reply_id: Reply.last.id, poll_id: Poll.last.id, value: '127.0.0.1' }]
+end
 @admin = User.create [{ email: 'test@test.com', password: 'qwerty', admin: true }]
 
