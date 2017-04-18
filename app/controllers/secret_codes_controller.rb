@@ -28,7 +28,7 @@ class SecretCodesController < ApplicationController
   def show
     respond_to do |format|
       format.html {}
-      format.png {}
+      #format.png { send_file image_path('logo_ts.png'), type: 'image/png', disposition: 'inline' }
     end
   end
 
