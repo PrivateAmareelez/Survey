@@ -1,4 +1,5 @@
 class SecretCodesController < ApplicationController
+  Mime::Type.register "image/png", :png
 
   def check
     @secret_code = SecretCode.find_by_value params[:value]
@@ -25,6 +26,10 @@ class SecretCodesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html {}
+      format.png {}
+    end
   end
 
   private
