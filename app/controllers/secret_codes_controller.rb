@@ -25,10 +25,6 @@ class SecretCodesController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html { redirect_to secret_codes_show_path }
-      format.all { render status: :bad_request }
-    end
   end
 
   private
