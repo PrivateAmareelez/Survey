@@ -1,11 +1,14 @@
 .panel.panel-default
   .panel-heading
-    .h3 Authentication
+    .h3 Авторизация
   .panel-body
     =form_tag(controller: 'secret_codes' , action: :check) do
       .field
-        =label_tag :value, 'Enter your survey code here:'
+        =label_tag :value, 'Введите Ваш код для голосования:'
         =text_field_tag :value
       %p
       .actions
-        =button_tag 'Go' , class: 'btn btn-primary' , type: :submit
+        =button_tag 'Войти' , class: 'btn btn-primary' , type: :submit
+
+.container-fluid
+  = image_tag 'LOGO.gif', class: "img-responsive"

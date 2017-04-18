@@ -13,7 +13,7 @@ class RepliesController < ApplicationController
     respond_to do |format|
       if @reply.save
         format.html do
-          flash[:success] = 'Thank you for taking the poll.'
+          flash[:success] = 'Спасибо за Ваш голос !'
           render 'replies/finish'
         end
       else

@@ -5,13 +5,13 @@ class SecretCodesController < ApplicationController
 
     respond_to do |format|
       if !@secret_code
-        format.html { redirect_to secret_codes_show_path, alert: 'There is no poll for your code.' }
+        format.html { redirect_to secret_codes_show_path, alert: 'К сожалению, не существует голосования с таким кодом.' }
         format.json { render json: @secret_code.errors, status: :unprocessable_entity }
       elsif !ip_check
-        format.html { redirect_to secret_codes_show_path, alert: "Your ip #{@ip} has already voted." }
+        format.html { redirect_to secret_codes_show_path, alert: "Пользователь с IP #{@ip} уже голосовал. С одного IP можно голосовать только один раз." }
         format.json { render json: @secret_code.errors, status: :unprocessable_entity }
       elsif !active_check
-        flash[:warning] = 'Poll for this code is not available yet.'
+        flash[:warning] = 'Голосование еще не запущено. Попробуйте позже.'
         format.html { redirect_to secret_codes_show_path }
         format.json { render json: @secret_code.errors, status: :unprocessable_entity }
       elsif @secret_code
