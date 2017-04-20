@@ -32,7 +32,11 @@ class PollSerializer
         x_axis: {
             legend: "Answers per question",
             series: answers_per_question.map do |possible_answer, answers|
-              possible_answer.title
+              if !possible_answer.nil?
+                possible_answer.title
+              else
+                ""
+              end
             end
         }
     }
