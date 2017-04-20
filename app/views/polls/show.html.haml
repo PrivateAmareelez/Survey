@@ -84,6 +84,11 @@
                   %dt
                     = answer.question.title
                   %dd
-                    = !answer.value.nil? ? answer.value : answer.possible_answer.title
+                    -if !answer.value.nil?
+                      = answer.value
+                    -else
+                      -if !answer.possible_answer.nil?
+                        = answer.possible_answer.title
+                    -#= !answer.value.nil? ? answer.value : answer.possible_answer.title
     #tab-stats.tab-pane{:role => "tabpanel"}
       = render 'stats'
